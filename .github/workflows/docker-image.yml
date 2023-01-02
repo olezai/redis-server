@@ -16,6 +16,8 @@ jobs:
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
+        with:
+          platforms: all
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -31,3 +33,6 @@ jobs:
         with:
           push: true
           tags: ${{ env.OWNER_NAME }}/${{ env.APP_NAME }}:latest
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64,linux/ppc64le
